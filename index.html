@@ -256,12 +256,44 @@
     .trust-bar { padding: 18px 24px; flex-wrap: wrap; gap: 18px; } footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
     .about-badge-float { left: 16px; }
   }
+
+  @media (max-width: 600px) {
+    /* Navbar Mobile Fix */
+    nav { padding: 12px 20px; height: auto; }
+    .nav-logo img { height: 32px; }
+    .nav-links a:not(.nav-cta) { display: none; /* Hide standard links to save space */ }
+    
+    /* Hero & Text Scaling */
+    .hero { padding: 120px 20px 50px; }
+    .hero h1 { font-size: 34px; }
+    .section-title { font-size: 28px; }
+    .hero-stats { flex-direction: column; gap: 20px; text-align: center; align-items: center; }
+    
+    /* Buttons */
+    .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    
+    /* Trust Bar Grid */
+    .trust-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; justify-items: start; padding: 20px; }
+    .trust-divider { display: none; }
+    
+    /* Form & Calculators */
+    .form-grid { grid-template-columns: 1fr; }
+    .calc-box, .contact-form-box, .booking-form-box { padding: 24px 20px; }
+    .calc-result-amount { font-size: 30px; }
+    
+    /* Modals & Chat Widget */
+    .chat-window { right: 20px; left: 20px; width: auto; bottom: 100px; }
+    .chat-widget-btn { right: 20px; bottom: 20px; width: 54px; height: 54px; font-size: 24px; }
+    .modal-box { padding: 30px 20px; width: 95%; }
+  }
 </style>
+<script src="lang.js"></script>
 </head>
 <body>
 
 <div class="announce-bar">
-  🍁 Tax Season 2025 — File your T1 before April 30. <a href="#booking">Book your appointment →</a>
+  <span data-i18n="announce">🍁 Tax Season 2025 — File your T1 before April 30.</span> <a href="#booking" data-i18n="book_announce">Book your appointment →</a>
 </div>
 
 <nav>
@@ -269,75 +301,75 @@
     <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/NEW_FACE_ACCOUNTING01-1-2.png" alt="Face Accounting">
   </div>
   <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#tools">Tools</a>
-    <a href="#calculator">Tax Calculator</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="#booking" class="nav-cta">Book Appointment</a>
+    <a href="#services" data-i18n="nav_services">Services</a>
+    <a href="#tools" data-i18n="nav_tools">Tools</a>
+    <a href="#calculator" data-i18n="nav_calc">Tax Calculator</a>
+    <a href="#about" data-i18n="nav_about">About</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
+    <a href="#booking" class="nav-cta" data-i18n="nav_book">Book Appointment</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div>
-    <div class="hero-badge fade-up"><span></span> Trusted in Toronto GTA since 2017</div>
-    <h1 class="fade-up d1"><em>Quick & Effective</em><br>Accounting<br>Solutions</h1>
-    <p class="hero-desc fade-up d2">Professional accounting, bookkeeping, and tax services for individuals and businesses in North York, Toronto, and Montreal. Serving clients in English, Turkish, Bosnian, and Albanian.</p>
+    <div class="hero-badge fade-up"><span ></span> <span data-i18n="hero_badge">Trusted in Toronto GTA since 2017</span></div>
+    <h1 class="fade-up d1" data-i18n="hero_title"><em>Quick & Effective</em><br>Accounting<br>Solutions</h1>
+    <p class="hero-desc fade-up d2" data-i18n="hero_desc">Professional accounting, bookkeeping, and tax services for individuals and businesses in North York, Toronto, and Montreal. Serving clients in English, Turkish, Bosnian, and Albanian.</p>
     <div class="hero-actions fade-up d3">
-      <a href="#booking" class="btn-primary">📅 Book Free Consultation</a>
-      <a href="#calculator" class="btn-outline">🧮 Try Tax Calculator</a>
+      <a href="#booking" class="btn-primary" data-i18n="btn_book_free">📅 Book Free Consultation</a>
+      <a href="#calculator" class="btn-outline" data-i18n="btn_try_calc">🧮 Try Tax Calculator</a>
     </div>
     <div class="hero-stats fade-up d4">
-      <div><div class="stat-num">8+</div><div class="stat-label">Years Experience</div></div>
-      <div><div class="stat-num">4</div><div class="stat-label">Languages Served</div></div>
-      <div><div class="stat-num">500+</div><div class="stat-label">Happy Clients</div></div>
+      <div><div class="stat-num">8+</div><div class="stat-label" data-i18n="stat_exp">Years Experience</div></div>
+      <div><div class="stat-num">4</div><div class="stat-label" data-i18n="stat_lang">Languages Served</div></div>
+      <div><div class="stat-num">500+</div><div class="stat-label" data-i18n="stat_clients">Happy Clients</div></div>
     </div>
   </div>
   <div class="hero-right fade-up d2">
-    <div class="hero-card"><div class="hero-card-icon">📋</div><h3>Personal Tax Returns</h3><p>T1, T4, self-employed, Uber drivers, non-residents, students and retirees.</p><span class="hero-card-tag">Starting from $80</span></div>
-    <div class="hero-card"><div class="hero-card-icon">🏢</div><h3>Business Registration & Corporate Tax</h3><p>Incorporation, GST/HST registration, payroll setup, T2 returns and full bookkeeping.</p><span class="hero-card-tag">Free Initial Consult</span></div>
-    <div class="hero-card"><div class="hero-card-icon">🌐</div><h3>Multilingual Support</h3><p>Serving Turkish, Bosnian and Albanian communities in the GTA with no language barrier.</p><span class="hero-card-tag">🇨🇦 🇹🇷 🇧🇦 🇦🇱</span></div>
+    <div class="hero-card"><div class="hero-card-icon">📋</div><h3 data-i18n="card_personal">Personal Tax Returns</h3><p data-i18n="card_personal_desc">T1, T4, self-employed, Uber drivers, non-residents, students and retirees.</p><span class="hero-card-tag" data-i18n="card_personal_tag">Starting from $80</span></div>
+    <div class="hero-card"><div class="hero-card-icon">🏢</div><h3 data-i18n="card_biz">Business Registration & Corporate Tax</h3><p data-i18n="card_biz_desc">Incorporation, GST/HST registration, payroll setup, T2 returns and full bookkeeping.</p><span class="hero-card-tag" data-i18n="card_biz_tag">Free Initial Consult</span></div>
+    <div class="hero-card"><div class="hero-card-icon">🌐</div><h3 data-i18n="card_multi">Multilingual Support</h3><p data-i18n="card_multi_desc">Serving Turkish, Bosnian and Albanian communities in the GTA with no language barrier.</p><span class="hero-card-tag">🇨🇦 🇹🇷 🇧🇦 🇦🇱</span></div>
   </div>
 </section>
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text">CRA Certified<br>Accountants</div></div>
+  <div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text" data-i18n="trust_cra">CRA Certified<br>Accountants</div></div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><span class="trust-icon">⚡</span><div class="trust-text">Same-Day<br>Appointments</div></div>
+  <div class="trust-item"><span class="trust-icon">⚡</span><div class="trust-text" data-i18n="trust_same">Same-Day<br>Appointments</div></div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><span class="trust-icon">🌍</span><div class="trust-text">4 Languages<br>Supported</div></div>
+  <div class="trust-item"><span class="trust-icon">🌍</span><div class="trust-text" data-i18n="trust_4lang">4 Languages<br>Supported</div></div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><span class="trust-icon">📁</span><div class="trust-text">Secure Document<br>Upload Portal</div></div>
+  <div class="trust-item"><span class="trust-icon">📁</span><div class="trust-text" data-i18n="trust_secure">Secure Document<br>Upload Portal</div></div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><span class="trust-icon">💬</span><div class="trust-text">WhatsApp<br>Support</div></div>
+  <div class="trust-item"><span class="trust-icon">💬</span><div class="trust-text" data-i18n="trust_wa">WhatsApp<br>Support</div></div>
 </div>
 
 <!-- SERVICES -->
 <section id="services">
-  <div class="section-tag">Our Services</div>
-  <h2 class="section-title">Everything you need,<br>under one roof</h2>
-  <p class="section-desc">From personal T1 returns to corporate filings and business registration — expert accounting for every stage of your financial life.</p>
+  <div class="section-tag" data-i18n="sec_services">Our Services</div>
+  <h2 class="section-title" data-i18n="title_services">Everything you need,<br>under one roof</h2>
+  <p class="section-desc" data-i18n="desc_services">From personal T1 returns to corporate filings and business registration — expert accounting for every stage of your financial life.</p>
   <div class="services-grid">
     <div class="service-card">
       <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/gfx-1.jpg" alt="Personal Services" class="service-card-img">
-      <div class="service-card-body"><h3>Personal Services</h3>
-        <ul class="service-list"><li>Employed (T4)</li><li>Self-Employed</li><li>Individual (T1)</li><li>Non-Residents</li><li>Retired</li><li>Student</li><li>Social Assistance Recipients</li><li>Uber / Gig Economy Driver</li></ul>
+      <div class="service-card-body"><h3 data-i18n="serv_pers">Personal Services</h3>
+        <ul class="service-list"><li data-i18n="serv_pers_1">Employed (T4)</li><li data-i18n="serv_pers_2">Self-Employed</li><li data-i18n="serv_pers_3">Individual (T1)</li><li data-i18n="serv_pers_4">Non-Residents</li><li data-i18n="serv_pers_5">Retired</li><li data-i18n="serv_pers_6">Student</li><li data-i18n="serv_pers_7">Social Assistance Recipients</li><li data-i18n="serv_pers_8">Uber / Gig Economy Driver</li></ul>
       </div>
-      <div class="service-card-footer"><a href="#booking" class="service-link">Book Appointment →</a></div>
+      <div class="service-card-footer"><a href="#booking" class="service-link" data-i18n="nav_book">Book Appointment →</a></div>
     </div>
     <div class="service-card">
       <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/gfx-3.jpg" alt="Business Registration" class="service-card-img">
-      <div class="service-card-body"><h3>Business Registration</h3>
-        <ul class="service-list"><li>Incorporation Registration</li><li>Business Name Search (NUANS)</li><li>GST/HST Number Registration</li><li>Payroll Registration</li><li>Sole Proprietorship</li><li>Business Dissolution</li></ul>
+      <div class="service-card-body"><h3 data-i18n="serv_bizreg">Business Registration</h3>
+        <ul class="service-list"><li data-i18n="serv_bizreg_1">Incorporation Registration</li><li data-i18n="serv_bizreg_2">Business Name Search (NUANS)</li><li data-i18n="serv_bizreg_3">GST/HST Number Registration</li><li data-i18n="serv_bizreg_4">Payroll Registration</li><li data-i18n="serv_bizreg_5">Sole Proprietorship</li><li data-i18n="serv_bizreg_6">Business Dissolution</li></ul>
       </div>
       <div class="service-card-footer"><a href="#booking" class="service-link">Get Started →</a></div>
     </div>
     <div class="service-card">
       <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/gfx-4.jpg" alt="Business Services" class="service-card-img">
-      <div class="service-card-body"><h3>Business Services</h3>
-        <ul class="service-list"><li>Accounting</li><li>Bookkeeping</li><li>Income Tax</li><li>Corporate Tax (T2)</li><li>Payroll Management</li><li>Business Mailbox</li></ul>
+      <div class="service-card-body"><h3 data-i18n="serv_biz">Business Services</h3>
+        <ul class="service-list"><li data-i18n="serv_biz_1">Accounting</li><li data-i18n="serv_biz_2">Bookkeeping</li><li data-i18n="serv_biz_3">Income Tax</li><li data-i18n="serv_biz_4">Corporate Tax (T2)</li><li data-i18n="serv_biz_5">Payroll Management</li><li data-i18n="serv_biz_6">Business Mailbox</li></ul>
       </div>
       <div class="service-card-footer"><a href="#booking" class="service-link">Learn More →</a></div>
     </div>
@@ -346,16 +378,16 @@
 
 <!-- TOOLS -->
 <section id="tools">
-  <div class="section-tag">Platform Features</div>
-  <h2 class="section-title">Smart tools for<br>effortless accounting</h2>
-  <p class="section-desc">A modern platform with tools that save you time, answer your questions 24/7, and keep your documents secure.</p>
+  <div class="section-tag" data-i18n="sec_tools">Platform Features</div>
+  <h2 class="section-title" data-i18n="title_tools">Smart tools for<br>effortless accounting</h2>
+  <p class="section-desc" data-i18n="desc_tools">A modern platform with tools that save you time, answer your questions 24/7, and keep your documents secure.</p>
   <div class="tools-grid">
-    <div class="tool-card"><span class="tool-emoji">📅</span><h3>Online Appointment Booking</h3><p>Book a consultation any time. Choose your service, pick a time slot, and get instant email confirmation.</p><span class="tool-badge new">Available Now</span></div>
-    <div class="tool-card"><span class="tool-emoji">🧮</span><h3>Tax Estimator Calculator</h3><p>Instant estimate of your federal and Ontario provincial taxes. Now with RRSP and Capital Gains.</p><span class="tool-badge new">Updated</span></div>
-    <div class="tool-card"><span class="tool-emoji">💬</span><h3>AI Chat Assistant</h3><p>Ask any tax question 24/7. Try the mock assistant below to get instant answers about tax deadlines and rates.</p><span class="tool-badge new">Available Now</span></div>
-    <div class="tool-card"><span class="tool-emoji">📊</span><h3>GST/HST Calculator</h3><p>Instantly add or extract 13% Ontario HST from any amount. Perfect for invoicing and expense tracking.</p><span class="tool-badge new">New</span></div>
-    <div class="tool-card"><span class="tool-emoji">📁</span><h3>Secure Document Portal</h3><p>Upload T4s, receipts, and invoices through our encrypted portal. No more sending documents by email.</p><span class="tool-badge soon">Coming Soon</span></div>
-    <div class="tool-card"><span class="tool-emoji">🔔</span><h3>CRA Deadline Reminders</h3><p>Never miss a filing date. Subscribe for automatic T1, T2, and GST/HST deadline reminders to your inbox.</p><span class="tool-badge soon">Coming Soon</span></div>
+    <div class="tool-card"><span class="tool-emoji">📅</span><h3 data-i18n="tool_book">Online Appointment Booking</h3><p data-i18n="tool_book_desc">Book a consultation any time. Choose your service, pick a time slot, and get instant email confirmation.</p><span class="tool-badge new" data-i18n="badge_avail">Available Now</span></div>
+    <div class="tool-card"><span class="tool-emoji">🧮</span><h3 data-i18n="tool_calc">Tax Estimator Calculator</h3><p data-i18n="tool_calc_desc">Instant estimate of your federal and Ontario provincial taxes. Now with RRSP and Capital Gains.</p><span class="tool-badge new" data-i18n="badge_updated">Updated</span></div>
+    <div class="tool-card"><span class="tool-emoji">💬</span><h3 data-i18n="tool_chat">AI Chat Assistant</h3><p data-i18n="tool_chat_desc">Ask any tax question 24/7. Try the mock assistant below to get instant answers about tax deadlines and rates.</p><span class="tool-badge new" data-i18n="badge_avail">Available Now</span></div>
+    <div class="tool-card"><span class="tool-emoji">📊</span><h3 data-i18n="tool_gst">GST/HST Calculator</h3><p data-i18n="tool_gst_desc">Instantly add or extract 13% Ontario HST from any amount. Perfect for invoicing and expense tracking.</p><span class="tool-badge new" data-i18n="badge_new">New</span></div>
+    <div class="tool-card"><span class="tool-emoji">📁</span><h3 data-i18n="tool_doc">Secure Document Portal</h3><p data-i18n="tool_doc_desc">Upload T4s, receipts, and invoices through our encrypted portal. No more sending documents by email.</p><span class="tool-badge soon" data-i18n="badge_soon">Coming Soon</span></div>
+    <div class="tool-card"><span class="tool-emoji">🔔</span><h3 data-i18n="tool_remind">CRA Deadline Reminders</h3><p data-i18n="tool_remind_desc">Never miss a filing date. Subscribe for automatic T1, T2, and GST/HST deadline reminders to your inbox.</p><span class="tool-badge soon" data-i18n="badge_soon">Coming Soon</span></div>
   </div>
 </section>
 
@@ -363,43 +395,43 @@
 <section id="calculator">
   <div class="calc-layout">
     <div>
-      <div class="section-tag">Tax Estimator</div>
-      <h2 class="section-title">Estimate your<br>2024 tax return</h2>
-      <p class="section-desc">Get a quick estimate of your income tax. For a precise result tailored to your situation, book a free consultation.</p>
+      <div class="section-tag" data-i18n="sec_calc">Tax Estimator</div>
+      <h2 class="section-title" data-i18n="title_calc">Estimate your<br>2024 tax return</h2>
+      <p class="section-desc" data-i18n="desc_calc">Get a quick estimate of your income tax. For a precise result tailored to your situation, book a free consultation.</p>
       <ul class="service-list" style="max-width:340px;">
-        <li>Federal + Ontario Provincial Tax</li>
-        <li>Basic personal amount deductions</li>
-        <li>Employment and self-employed income</li>
-        <li>Results in seconds, no login required</li>
+        <li data-i18n="calc_bullet_1">Federal + Ontario Provincial Tax</li>
+        <li data-i18n="calc_bullet_2">Basic personal amount deductions</li>
+        <li data-i18n="calc_bullet_3">Employment and self-employed income</li>
+        <li data-i18n="calc_bullet_4">Results in seconds, no login required</li>
       </ul>
     </div>
     <div class="calc-box">
-      <h3>🧮 Quick Tax Estimate — 2024</h3>
+      <h3 data-i18n="calc_box_title">🧮 Quick Tax Estimate — 2024</h3>
       <div class="calc-row">
-        <label class="calc-label">Annual Income (Gross)</label>
+        <label class="calc-label" data-i18n="calc_lbl_income">Annual Income (Gross)</label>
         <input type="range" class="calc-slider" id="income" min="10000" max="300000" step="5000" value="75000" oninput="calcTax()">
         <div class="calc-val-row"><span>$10k</span><strong id="income-val">$75,000</strong><span>$300k+</span></div>
       </div>
       <div class="form-grid" style="margin-bottom: 20px;">
         <div>
-          <label class="calc-label">RRSP Contribution ($)</label>
+          <label class="calc-label" data-i18n="calc_lbl_rrsp">RRSP Contribution ($)</label>
           <input type="number" class="form-input" id="rrsp" value="0" min="0" oninput="calcTax()" style="padding: 8px 12px; height: 42px;">
         </div>
         <div>
-          <label class="calc-label">Capital Gains ($)</label>
+          <label class="calc-label" data-i18n="calc_lbl_cap">Capital Gains ($)</label>
           <input type="number" class="form-input" id="capgains" value="0" min="0" oninput="calcTax()" style="padding: 8px 12px; height: 42px;">
         </div>
       </div>
       <div class="calc-row">
-        <label class="calc-label">Employment Type</label>
+        <label class="calc-label" data-i18n="calc_lbl_emp">Employment Type</label>
         <select class="form-input form-select" id="emp-type" onchange="calcTax()">
-          <option value="employed">Employed (T4)</option>
-          <option value="self">Self-Employed</option>
-          <option value="uber">Uber / Gig Worker</option>
+          <option value="employed" data-i18n="emp_opt_1">Employed (T4)</option>
+          <option value="self" data-i18n="emp_opt_2">Self-Employed</option>
+          <option value="uber" data-i18n="emp_opt_3">Uber / Gig Worker</option>
         </select>
       </div>
       <div class="calc-row">
-        <label class="calc-label">Province</label>
+        <label class="calc-label" data-i18n="calc_lbl_prov">Province</label>
         <select class="form-input form-select" id="province" onchange="calcTax()">
           <option value="on">Ontario</option>
           <option value="qc">Quebec</option>
@@ -407,11 +439,11 @@
         </select>
       </div>
       <div class="calc-result">
-        <div class="calc-result-label">Estimated Tax Owing</div>
+        <div class="calc-result-label" data-i18n="calc_res_lbl">Estimated Tax Owing</div>
         <div class="calc-result-amount" id="tax-result">$14,880</div>
-        <div class="calc-result-note">Effective rate: <span id="eff-rate">19.8%</span> · Estimate only</div>
+        <div class="calc-result-note"><span data-i18n="calc_res_note">Effective rate</span>: <span id="eff-rate">19.8%</span></div>
       </div>
-      <div class="calc-cta-note">Want the exact number? <a href="#booking">Book a free consultation →</a></div>
+      <div class="calc-cta-note"><span data-i18n="calc_cta_note">Want the exact number?</span> <a href="#booking">Book a free consultation →</a></div>
     </div>
   </div>
 </section>
@@ -420,71 +452,71 @@
 <section id="gst-calculator" style="background: var(--bg); border-top: 1px solid var(--border);">
   <div class="calc-layout" style="grid-template-columns: 1.1fr 1fr;">
     <div class="calc-box" style="background: white;">
-      <h3>📊 Ontario GST/HST Calculator</h3>
-      <p style="font-size: 14px; color: var(--text-mid); margin-bottom: 24px;">Quickly add or extract 13% HST for your invoices or receipts in Ontario.</p>
+      <h3 data-i18n="gst_title">📊 Ontario GST/HST Calculator</h3>
+      <p style="font-size: 14px; color: var(--text-mid); margin-bottom: 24px;" data-i18n="gst_desc">Quickly add or extract 13% HST for your invoices or receipts in Ontario.</p>
       <div class="calc-row">
-        <label class="calc-label">Amount ($)</label>
+        <label class="calc-label" data-i18n="gst_amt">Amount ($)</label>
         <input type="number" class="form-input" id="gst-amount" value="100" min="0" oninput="calcGst()" style="font-size: 18px; font-weight: 600;">
       </div>
       <div class="form-grid" style="margin-bottom: 24px;">
-        <button class="btn-outline" id="btn-add-hst" onclick="setGstMode('add')" style="justify-content: center; border-color: var(--brand-blue); background: var(--brand-blue-pale);">Add 13% HST</button>
-        <button class="btn-outline" id="btn-ext-hst" onclick="setGstMode('extract')" style="justify-content: center;">Extract 13% HST</button>
+        <button class="btn-outline" id="btn-add-hst" onclick="setGstMode('add')" style="justify-content: center; border-color: var(--brand-blue); background: var(--brand-blue-pale);" data-i18n="btn_add_hst">Add 13% HST</button>
+        <button class="btn-outline" id="btn-ext-hst" onclick="setGstMode('extract')" style="justify-content: center;" data-i18n="btn_ext_hst">Extract 13% HST</button>
       </div>
       <div style="background: var(--brand-blue-mist); border-radius: var(--radius); padding: 20px; border: 1px solid var(--border-light);">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;"><span style="color: var(--text-mid);">Subtotal:</span><strong id="gst-subtotal">$100.00</strong></div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;"><span style="color: var(--text-mid);">HST (13%):</span><strong id="gst-tax">$13.00</strong></div>
-        <div style="display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 16px;"><span style="color: var(--text-dark); font-weight: 600;">Total:</span><strong id="gst-total" style="color: var(--brand-blue); font-size: 20px; font-weight: 700;">$113.00</strong></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;"><span style="color: var(--text-mid);" data-i18n="gst_sub">Subtotal:</span><strong id="gst-subtotal">$100.00</strong></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;"><span style="color: var(--text-mid);" data-i18n="gst_tax">HST (13%):</span><strong id="gst-tax">$13.00</strong></div>
+        <div style="display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 16px;"><span style="color: var(--text-dark); font-weight: 600;" data-i18n="gst_tot">Total:</span><strong id="gst-total" style="color: var(--brand-blue); font-size: 20px; font-weight: 700;">$113.00</strong></div>
       </div>
     </div>
     <div>
-      <div class="section-tag">For Businesses</div>
-      <h2 class="section-title">Invoicing made<br>simple</h2>
-      <p class="section-desc">If your business revenue exceeds $30,000 in a calendar quarter or over four consecutive calendar quarters, you must register for and collect GST/HST.</p>
+      <div class="section-tag" data-i18n="gst_biz_tag">For Businesses</div>
+      <h2 class="section-title" data-i18n="gst_biz_title">Invoicing made<br>simple</h2>
+      <p class="section-desc" data-i18n="gst_biz_desc">If your business revenue exceeds $30,000 in a calendar quarter or over four consecutive calendar quarters, you must register for and collect GST/HST.</p>
       <ul class="service-list" style="max-width:340px;">
-        <li>Ontario HST Rate is 13%</li>
-        <li>GST is 5%, Provincial portion is 8%</li>
-        <li>We handle GST/HST return filings</li>
+        <li data-i18n="gst_biz_1">Ontario HST Rate is 13%</li>
+        <li data-i18n="gst_biz_2">GST is 5%, Provincial portion is 8%</li>
+        <li data-i18n="gst_biz_3">We handle GST/HST return filings</li>
       </ul>
-      <a href="#booking" class="btn-primary" style="margin-top: 24px;">Need help registering? →</a>
+      <a href="#booking" class="btn-primary" style="margin-top: 24px;" data-i18n="btn_gst_help">Need help registering? →</a>
     </div>
   </div>
 </section>
 
 <!-- BOOKING -->
 <section id="booking">
-  <div class="section-tag">Online Booking</div>
-  <h2 class="section-title">Book your appointment<br>in 60 seconds</h2>
+  <div class="section-tag" data-i18n="sec_book">Online Booking</div>
+  <h2 class="section-title" data-i18n="title_book">Book your appointment<br>in 60 seconds</h2>
   <div class="booking-layout" style="margin-top:8px;">
     <div>
-      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:32px;">Choose your service, select a convenient time, and we'll confirm instantly — in-person at our North York office or via video call.</p>
-      <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Choose your service</div><div class="step-desc">T1, T2, bookkeeping, business registration and more.</div></div></div>
-      <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Pick a time slot</div><div class="step-desc">Available Mon–Sat, 9am–6pm. Same-day slots often available.</div></div></div>
-      <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Get confirmed instantly</div><div class="step-desc">Confirmation email with office address or video link sent right away.</div></div></div>
-      <div style="margin-top:28px;"><div style="font-size:13px;font-weight:600;color:var(--text-mid);margin-bottom:8px;">📍 Office Location</div><div class="addr-box">1110 Finch Avenue West, Unit 314<br>North York, ON M3J 2T2</div></div>
+      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:32px;" data-i18n="desc_book">Choose your service, select a convenient time, and we'll confirm instantly — in-person at our North York office or via video call.</p>
+      <div class="step-item"><div class="step-num">1</div><div><div class="step-title" data-i18n="step_1_title">Choose your service</div><div class="step-desc" data-i18n="step_1_desc">T1, T2, bookkeeping, business registration and more.</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div><div class="step-title" data-i18n="step_2_title">Pick a time slot</div><div class="step-desc" data-i18n="step_2_desc">Available Mon–Sat, 9am–6pm. Same-day slots often available.</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div><div class="step-title" data-i18n="step_3_title">Get confirmed instantly</div><div class="step-desc" data-i18n="step_3_desc">Confirmation email with office address or video link sent right away.</div></div></div>
+      <div style="margin-top:28px;"><div style="font-size:13px;font-weight:600;color:var(--text-mid);margin-bottom:8px;" data-i18n="loc_title">📍 Office Location</div><div class="addr-box">1110 Finch Avenue West, Unit 314<br>North York, ON M3J 2T2</div></div>
     </div>
     <div class="booking-form-box">
-      <h3>📅 Request an Appointment</h3>
+      <h3 data-i18n="book_box_title">📅 Request an Appointment</h3>
       <form id="mock-booking-form" onsubmit="handleBooking(event)">
-        <div class="form-row"><label class="form-label">Full Name</label><input type="text" id="b-name" class="form-input" placeholder="Your full name" required></div>
+        <div class="form-row"><label class="form-label" data-i18n="lbl_name">Full Name</label><input type="text" id="b-name" class="form-input" placeholder="Your full name" required></div>
         <div class="form-grid">
-          <div class="form-row"><label class="form-label">Phone</label><input type="tel" class="form-input" placeholder="+1 (416) ..."></div>
-          <div class="form-row"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="you@email.com" required></div>
+          <div class="form-row"><label class="form-label" data-i18n="lbl_phone">Phone</label><input type="tel" class="form-input" placeholder="+1 (416) ..."></div>
+          <div class="form-row"><label class="form-label" data-i18n="lbl_email">Email</label><input type="email" class="form-input" placeholder="you@email.com" required></div>
         </div>
-        <div class="form-row"><label class="form-label">Service Needed</label>
+        <div class="form-row"><label class="form-label" data-i18n="lbl_serv">Service Needed</label>
           <select class="form-input form-select"><option>Personal Tax Return (T1)</option><option>Corporate Tax Return (T2)</option><option>Bookkeeping</option><option>Business Registration</option><option>GST/HST Registration</option><option>Payroll Services</option><option>Other</option></select>
         </div>
         <div class="form-grid">
-          <div class="form-row"><label class="form-label">Preferred Date</label><input type="date" class="form-input" required></div>
-          <div class="form-row"><label class="form-label">Time</label>
+          <div class="form-row"><label class="form-label" data-i18n="lbl_date">Preferred Date</label><input type="date" class="form-input" required></div>
+          <div class="form-row"><label class="form-label" data-i18n="lbl_time">Time</label>
             <select class="form-input form-select"><option>Morning (9am–12pm)</option><option>Afternoon (12–3pm)</option><option>Evening (3–6pm)</option></select>
           </div>
         </div>
-        <div class="form-row"><label class="form-label">Meeting Type</label>
+        <div class="form-row"><label class="form-label" data-i18n="lbl_meet">Meeting Type</label>
           <select class="form-input form-select"><option>In-Person (North York)</option><option>Video Call (Zoom)</option><option>Phone Call</option></select>
         </div>
-        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:6px;padding:14px;font-size:15px;">Confirm Appointment →</button>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:6px;padding:14px;font-size:15px;" data-i18n="btn_confirm">Confirm Appointment →</button>
       </form>
-      <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-light);">Or reach us on WhatsApp</div>
+      <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-light);" data-i18n="book_wa">Or reach us on WhatsApp</div>
       <a href="https://api.whatsapp.com/send/?phone=+14163207076" class="whatsapp-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WhatsApp — +1 (416) 320-7076
@@ -495,13 +527,13 @@
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <div class="section-tag">Client Reviews</div>
-  <h2 class="section-title">Trusted by hundreds<br>across the GTA</h2>
-  <p class="section-desc">Real feedback from individuals and business owners who trust Face Accounting year after year.</p>
+  <div class="section-tag" data-i18n="sec_test">Client Reviews</div>
+  <h2 class="section-title" data-i18n="title_test">Trusted by hundreds<br>across the GTA</h2>
+  <p class="section-desc" data-i18n="desc_test">Real feedback from individuals and business owners who trust Face Accounting year after year.</p>
   <div class="testimonials-grid">
-    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"I've been filing my T1 with Face Accounting for 3 years. As a self-employed consultant my taxes are complicated — they always get me the best refund possible."</p><div class="testimonial-author"><div class="author-avatar">AK</div><div><div class="author-name">Ahmet K.</div><div class="author-sub">Self-Employed, North York</div></div></div></div>
-    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"They handled our incorporation, GST registration, and first corporate tax return. Everything was smooth and professional. Great service in Turkish!"</p><div class="testimonial-author"><div class="author-avatar">SY</div><div><div class="author-name">Selma Y.</div><div class="author-sub">Business Owner, Toronto</div></div></div></div>
-    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"As an Uber driver I never knew how to file taxes correctly. Face Accounting explained everything clearly and filed everything on time. Highly recommended!"</p><div class="testimonial-author"><div class="author-avatar">MB</div><div><div class="author-name">Mirza B.</div><div class="author-sub">Uber Driver, Mississauga</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text" data-i18n="test_1">"I've been filing my T1 with Face Accounting for 3 years. As a self-employed consultant my taxes are complicated — they always get me the best refund possible."</p><div class="testimonial-author"><div class="author-avatar">AK</div><div><div class="author-name">Ahmet K.</div><div class="author-sub" data-i18n="test_1_sub">Self-Employed, North York</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text" data-i18n="test_2">"They handled our incorporation, GST registration, and first corporate tax return. Everything was smooth and professional. Great service!"</p><div class="testimonial-author"><div class="author-avatar">SY</div><div><div class="author-name">Selma Y.</div><div class="author-sub" data-i18n="test_2_sub">Business Owner, Toronto</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text" data-i18n="test_3">"As an Uber driver I never knew how to file taxes correctly. Face Accounting explained everything clearly and filed everything on time. Highly recommended!"</p><div class="testimonial-author"><div class="author-avatar">MB</div><div><div class="author-name">Mirza B.</div><div class="author-sub" data-i18n="test_3_sub">Uber Driver, Mississauga</div></div></div></div>
   </div>
 </section>
 
@@ -510,16 +542,16 @@
   <div class="about-layout">
     <div class="about-img-wrap">
       <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/face-accounting_flyer-11.jpg" alt="Face Accounting" class="about-img">
-      <div class="about-badge-float"><div class="num">8+</div><div class="lbl">Years Serving Toronto GTA</div></div>
+      <div class="about-badge-float"><div class="num">8+</div><div class="lbl" data-i18n="about_badge_lbl">Years Serving Toronto GTA</div></div>
     </div>
     <div>
-      <div class="section-tag">About Us</div>
-      <h2 class="section-title">A firm you can<br>truly trust</h2>
-      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:18px;">Our professional services firm in North York has been providing dedicated, quality accounting services to individuals and businesses since 2017.</p>
-      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:32px;">We understand entrepreneurs are busy. Our job is to handle your taxes and bookkeeping so you can focus on growing your business — across North York, Toronto GTA, and Montreal.</p>
-      <div style="font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:14px;">Communities we proudly serve:</div>
+      <div class="section-tag" data-i18n="sec_about">About Us</div>
+      <h2 class="section-title" data-i18n="title_about">A firm you can<br>truly trust</h2>
+      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:18px;" data-i18n="desc_about_1">Our professional services firm in North York has been providing dedicated, quality accounting services to individuals and businesses since 2017.</p>
+      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:32px;" data-i18n="desc_about_2">We understand entrepreneurs are busy. Our job is to handle your taxes and bookkeeping so you can focus on growing your business — across North York, Toronto GTA, and Montreal.</p>
+      <div style="font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:14px;" data-i18n="about_comm">Communities we proudly serve:</div>
       <div style="margin-bottom:36px;"><span class="flag-item">🇨🇦 English</span><span class="flag-item">🇹🇷 Turkish</span><span class="flag-item">🇧🇦 Bosnian</span><span class="flag-item">🇦🇱 Albanian</span></div>
-      <a href="#booking" class="btn-primary">Book Free Consultation →</a>
+      <a href="#booking" class="btn-primary" data-i18n="btn_book_about">Book Free Consultation →</a>
     </div>
   </div>
 </section>
@@ -528,47 +560,47 @@
 <section id="contact">
   <div class="contact-layout">
     <div>
-      <div class="section-tag">Contact Us</div>
-      <h2 class="section-title">Get in touch<br>anytime</h2>
+      <div class="section-tag" data-i18n="sec_cont">Contact Us</div>
+      <h2 class="section-title" data-i18n="title_cont">Get in touch<br>anytime</h2>
       <div style="margin-top:36px;">
-        <div class="contact-info-item"><div class="contact-icon-wrap">📍</div><div><div class="contact-info-label">Office Address</div><div class="contact-info-value">1110 Finch Avenue West, Unit 314<br>North York, ON M3J 2T2</div></div></div>
-        <div class="contact-info-item"><div class="contact-icon-wrap">📞</div><div><div class="contact-info-label">Phone</div><div class="contact-info-value"><a href="tel:+14165512358">+1 (416) 551-2358</a></div></div></div>
-        <div class="contact-info-item"><div class="contact-icon-wrap">✉️</div><div><div class="contact-info-label">Email</div><div class="contact-info-value"><a href="mailto:info@faceaccounting.com">info@faceaccounting.com</a></div></div></div>
-        <div class="contact-info-item"><div class="contact-icon-wrap">💬</div><div><div class="contact-info-label">WhatsApp</div><div class="contact-info-value"><a href="https://api.whatsapp.com/send/?phone=+14163207076">+1 (416) 320-7076</a></div></div></div>
+        <div class="contact-info-item"><div class="contact-icon-wrap">📍</div><div><div class="contact-info-label" data-i18n="cont_addr">Office Address</div><div class="contact-info-value">1110 Finch Avenue West, Unit 314<br>North York, ON M3J 2T2</div></div></div>
+        <div class="contact-info-item"><div class="contact-icon-wrap">📞</div><div><div class="contact-info-label" data-i18n="cont_phone">Phone</div><div class="contact-info-value"><a href="tel:+14165512358">+1 (416) 551-2358</a></div></div></div>
+        <div class="contact-info-item"><div class="contact-icon-wrap">✉️</div><div><div class="contact-info-label" data-i18n="cont_email">Email</div><div class="contact-info-value"><a href="mailto:info@faceaccounting.com">info@faceaccounting.com</a></div></div></div>
+        <div class="contact-info-item"><div class="contact-icon-wrap">💬</div><div><div class="contact-info-label" data-i18n="cont_wa">WhatsApp</div><div class="contact-info-value"><a href="https://api.whatsapp.com/send/?phone=+14163207076">+1 (416) 320-7076</a></div></div></div>
       </div>
-      <div style="font-size:13px;font-weight:600;color:var(--text-mid);margin-bottom:10px;">Preferred Language:</div>
+      <div style="font-size:13px;font-weight:600;color:var(--text-mid);margin-bottom:10px;" data-i18n="cont_pref_lang">Preferred Language:</div>
       <div class="lang-bar">
-        <div class="lang-pill active">🇨🇦 English</div>
-        <div class="lang-pill">🇹🇷 Türkçe</div>
-        <div class="lang-pill">🇧🇦 Bosanski</div>
-        <div class="lang-pill">🇦🇱 Shqip</div>
+        <div class="lang-pill active" onclick="changeLang('en')">🇨🇦 English</div>
+        <div class="lang-pill" onclick="changeLang('tr')">🇹🇷 Türkçe</div>
+        <div class="lang-pill" onclick="changeLang('bs')">🇧🇦 Bosanski</div>
+        <div class="lang-pill" onclick="changeLang('sq')">🇦🇱 Shqip</div>
       </div>
     </div>
     <div class="contact-form-box">
-      <h3>Send us a message</h3>
-      <div class="form-row"><label class="form-label">Full Name</label><input type="text" class="form-input" placeholder="Your name"></div>
-      <div class="form-row"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
-      <div class="form-row"><label class="form-label">Phone Number</label><input type="tel" class="form-input" placeholder="+1 (416) ..."></div>
-      <div class="form-row"><label class="form-label">Subject</label><input type="text" class="form-input" placeholder="How can we help?"></div>
-      <div class="form-row"><label class="form-label">Message</label><textarea class="form-input" rows="4" placeholder="Tell us more about your needs..."></textarea></div>
-      <button class="btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
+      <h3 data-i18n="cont_box">Send us a message</h3>
+      <div class="form-row"><label class="form-label" data-i18n="lbl_name">Full Name</label><input type="text" class="form-input" placeholder="Your name"></div>
+      <div class="form-row"><label class="form-label" data-i18n="lbl_email">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+      <div class="form-row"><label class="form-label" data-i18n="lbl_phone">Phone Number</label><input type="tel" class="form-input" placeholder="+1 (416) ..."></div>
+      <div class="form-row"><label class="form-label" data-i18n="cont_subj">Subject</label><input type="text" class="form-input" placeholder="How can we help?"></div>
+      <div class="form-row"><label class="form-label" data-i18n="cont_msg">Message</label><textarea class="form-input" rows="4" placeholder="Tell us more about your needs..."></textarea></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" data-i18n="btn_send">Send Message →</button>
     </div>
   </div>
 </section>
 
 <footer>
   <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/NEW_FACE_ACCOUNTING01-1-2.png" alt="Face Accounting">
-  <span>© 2025 FaceAccounting.com — All rights reserved. Serving Toronto GTA & Montreal.</span>
-  <span>1110 Finch Ave W, Unit 314, North York ON</span>
+  <span data-i18n="footer_rights">© 2025 FaceAccounting.com — All rights reserved. Serving Toronto GTA & Montreal.</span>
+  <span data-i18n="footer_addr">1110 Finch Ave W, Unit 314, North York ON</span>
 </footer>
 
 <!-- MOCK BOOKING MODAL -->
 <div class="modal-overlay" id="booking-modal">
   <div class="modal-box">
     <div class="modal-icon">✅</div>
-    <h3>Booking Confirmed!</h3>
-    <p>Thank you, <strong id="modal-name"></strong>. Your appointment has been requested successfully. We will send a confirmation email with details shortly.</p>
-    <button class="btn-primary" onclick="closeModal()" style="width: 100%; justify-content: center;">Done</button>
+    <h3 data-i18n="modal_title">Booking Confirmed!</h3>
+    <p><span data-i18n="modal_desc">Thank you. Your appointment has been requested successfully. We will send a confirmation email with details shortly.</span> <strong id="modal-name"></strong></p>
+    <button class="btn-primary" onclick="closeModal()" style="width: 100%; justify-content: center;" data-i18n="btn_done">Done</button>
   </div>
 </div>
 
@@ -576,21 +608,52 @@
 <button class="chat-widget-btn" onclick="toggleChat()">💬</button>
 <div class="chat-window" id="chat-window">
   <div class="chat-header">
-    <span>🤖 FaceTax Assistant</span>
+    <span data-i18n="chat_title">🤖 FaceTax Assistant</span>
     <span class="chat-close" onclick="toggleChat()">✖</span>
   </div>
   <div class="chat-body" id="chat-body">
-    <div class="chat-msg bot">Hi there! 👋 I'm your AI Tax Assistant. How can I help you today?</div>
+    <div class="chat-msg bot" data-i18n="chat_greet">Hi there! 👋 I'm your AI Tax Assistant. How can I help you today?</div>
   </div>
   <div class="chat-input-area">
-    <button class="chat-quick-btn" onclick="sendChat('When is the tax deadline?')">Tax Deadline?</button>
-    <button class="chat-quick-btn" onclick="sendChat('What is the HST rate in Ontario?')">HST Rate?</button>
-    <button class="chat-quick-btn" onclick="sendChat('How much does a T1 cost?')">Pricing?</button>
-    <button class="chat-quick-btn" onclick="sendChat('What do I need for a T1?')">T1 Requirements?</button>
+    <button class="chat-quick-btn" onclick="sendChat('When is the tax deadline?')" data-i18n="chat_q1">Tax Deadline?</button>
+    <button class="chat-quick-btn" onclick="sendChat('What is the HST rate in Ontario?')" data-i18n="chat_q2">HST Rate?</button>
+    <button class="chat-quick-btn" onclick="sendChat('How much does a T1 cost?')" data-i18n="chat_q3">Pricing?</button>
+    <button class="chat-quick-btn" onclick="sendChat('What do I need for a T1?')" data-i18n="chat_q4">T1 Requirements?</button>
   </div>
 </div>
 
 <script>
+// Language Switcher Logic
+let currentLang = localStorage.getItem('user_lang') || 'en';
+
+function changeLang(lang) {
+  if (!translations[lang]) return;
+  currentLang = lang;
+  
+  // Update texts
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  
+  // Update active pill
+  document.querySelectorAll('.lang-pill').forEach(btn => {
+    btn.classList.remove('active');
+    if(btn.getAttribute('onclick').includes(lang)) btn.classList.add('active');
+  });
+  
+  localStorage.setItem('user_lang', lang);
+}
+
+// Initial language load
+window.addEventListener('DOMContentLoaded', () => {
+  if (currentLang !== 'en') changeLang(currentLang);
+});
+
+
+// Calculations & Mock UI Logic
 function calcTax() {
   const rawIncome = parseInt(document.getElementById('income').value) || 0;
   const rrsp = parseInt(document.getElementById('rrsp').value) || 0;
@@ -647,7 +710,7 @@ function calcGst() {
 function handleBooking(e) {
   e.preventDefault();
   const name = document.getElementById('b-name').value || 'Guest';
-  document.getElementById('modal-name').textContent = name;
+  document.getElementById('modal-name').textContent = '(' + name + ')';
   document.getElementById('booking-modal').classList.add('active');
   document.getElementById('mock-booking-form').reset();
 }
@@ -662,25 +725,50 @@ function toggleChat() {
 }
 function sendChat(question) {
   const body = document.getElementById('chat-body');
-  body.innerHTML += `<div class="chat-msg user">${question}</div>`;
+  
+  // Try to find localized label if it's a quick button press
+  let displayQ = question;
+  if(currentLang !== 'en') {
+     if(question.includes('deadline')) displayQ = translations[currentLang]['chat_q1'];
+     if(question.includes('HST')) displayQ = translations[currentLang]['chat_q2'];
+     if(question.includes('cost')) displayQ = translations[currentLang]['chat_q3'];
+     if(question.includes('T1')) displayQ = translations[currentLang]['chat_q4'];
+  }
+  
+  body.innerHTML += `<div class="chat-msg user">${displayQ}</div>`;
   body.scrollTop = body.scrollHeight;
   
   setTimeout(() => {
     let answer = "I'm sorry, I can only answer a few basic questions right now.";
-    if (question.includes("deadline")) answer = "For the 2024 tax year, the deadline to file your personal T1 is April 30, 2025. If self-employed, the deadline is June 16, 2025.";
-    if (question.includes("HST rate")) answer = "The HST (Harmonized Sales Tax) rate in Ontario is 13%. This consists of 5% federal GST and 8% provincial tax.";
-    if (question.includes("cost")) answer = "Our personal tax returns (T1) start from just $80. Corporate tax returns (T2) are quoted based on the complexity. You can book a free consultation!";
-    if (question.includes("T1 Requirements")) answer = "You'll need your T4 slips, any T5s, RRSP contribution receipts, medical expense receipts, and notice of assessment from last year.";
+    if(currentLang === 'tr') answer = "Üzgünüm, şu an sadece temel soruları yanıtlayabiliyorum.";
+    if(currentLang === 'bs') answer = "Izvinite, mogu odgovoriti samo na osnovna pitanja.";
+    if(currentLang === 'sq') answer = "Më falni, mund t'u përgjigjem vetëm disa pyetjeve bazë.";
+    
+    // Very basic localized answers for mock demonstration
+    if (question.includes("deadline")) {
+      answer = "For 2024, the deadline is April 30, 2025. June 16 if self-employed.";
+      if(currentLang === 'tr') answer = "2024 yılı için son başvuru 30 Nisan 2025. Serbest çalışan iseniz 16 Haziran.";
+      if(currentLang === 'bs') answer = "Za 2024, rok je 30. april 2025. 16. jun za samozaposlene.";
+      if(currentLang === 'sq') answer = "Për 2024, afati është 30 Prill 2025. 16 Qershor për të vetëpunësuarit.";
+    }
+    if (question.includes("HST rate")) {
+      answer = "The HST rate in Ontario is 13%.";
+      if(currentLang === 'tr') answer = "Ontario'da HST oranı %13'tür.";
+      if(currentLang === 'bs') answer = "Stopa HST u Ontariju je 13%.";
+      if(currentLang === 'sq') answer = "Norma e HST në Ontario është 13%.";
+    }
+    if (question.includes("cost")) {
+       answer = "T1 returns start at $80. Contact us for corporate quotes.";
+       if(currentLang === 'tr') answer = "T1 beyannameleri 80 dolardan başlar. Şirketler için iletişime geçin.";
+       if(currentLang === 'bs') answer = "T1 prijave počinju od $80. Kontaktirajte nas za cijene firmi.";
+       if(currentLang === 'sq') answer = "Deklaratat T1 fillojnë nga $80. Na kontaktoni për kuotat.";
+    }
     
     body.innerHTML += `<div class="chat-msg bot">${answer}</div>`;
     body.scrollTop = body.scrollHeight;
   }, 600);
 }
 
-document.querySelectorAll('.lang-pill').forEach(p => p.addEventListener('click', function() {
-  document.querySelectorAll('.lang-pill').forEach(x => x.classList.remove('active'));
-  this.classList.add('active');
-}));
 calcTax();
 calcGst();
 </script>
