@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Face Accounting – You Can Trust Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand-blue: #2A5FA5;
+    --brand-blue-light: #4A7EC4;
+    --brand-blue-pale: #EAF1FB;
+    --brand-blue-mist: #F4F8FE;
+    --gold: #C89A2A;
+    --gold-light: #E8B84A;
+    --gold-pale: #FDF6E7;
+    --bg: #F7FAFF;
+    --surface: #FFFFFF;
+    --border: #E2EAF4;
+    --border-light: #EEF3FA;
+    --text-dark: #1C2B45;
+    --text-mid: #4A617E;
+    --text-light: #8298B5;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 2px 12px rgba(42,95,165,0.07);
+    --shadow-md: 0 8px 32px rgba(42,95,165,0.10);
+    --shadow-lg: 0 16px 56px rgba(42,95,165,0.13);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-dark); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  .announce-bar {
+    background: linear-gradient(90deg, var(--brand-blue), var(--brand-blue-light));
+    text-align: center; padding: 10px 20px;
+    font-size: 13px; font-weight: 500; color: white;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  }
+  .announce-bar a { color: var(--gold-light); text-decoration: none; font-weight: 600; }
+
+  nav {
+    position: fixed; top: 38px; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(16px);
+    padding: 0 60px; height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  }
+  .nav-logo img { height: 38px; object-fit: contain; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { color: var(--text-mid); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--brand-blue); }
+  .nav-cta { background: var(--brand-blue) !important; color: white !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
+  .nav-cta:hover { background: var(--brand-blue-light) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #ECF3FF 0%, #F7FAFF 50%, #FEFCF5 100%);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 160px 80px 100px; gap: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -100px; right: -80px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(42,95,165,0.08) 0%, transparent 70%); pointer-events: none; }
+  .hero::after  { content: ''; position: absolute; bottom: -80px; left: 35%; width: 320px; height: 320px; background: radial-gradient(circle, rgba(200,154,42,0.07) 0%, transparent 70%); pointer-events: none; }
+
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--brand-blue-pale); border: 1px solid rgba(42,95,165,0.2); color: var(--brand-blue); padding: 7px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; margin-bottom: 24px; }
+  .hero-badge span { width: 6px; height: 6px; background: var(--brand-blue); border-radius: 50%; }
+
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 4vw, 58px); font-weight: 700; color: var(--text-dark); line-height: 1.15; margin-bottom: 22px; }
+  .hero h1 em { color: var(--brand-blue); font-style: normal; }
+  .hero-desc { color: var(--text-mid); font-size: 17px; line-height: 1.78; margin-bottom: 40px; max-width: 460px; }
+
+  .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary { background: var(--brand-blue); color: white; padding: 14px 30px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(42,95,165,0.22); }
+  .btn-primary:hover { background: var(--brand-blue-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,95,165,0.28); }
+
+  .btn-outline { background: white; color: var(--brand-blue); padding: 13px 26px; border-radius: 10px; text-decoration: none; font-weight: 500; font-size: 15px; border: 1.5px solid var(--border); transition: border-color 0.2s, box-shadow 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-outline:hover { border-color: var(--brand-blue); box-shadow: var(--shadow-sm); }
+
+  .hero-stats { display: flex; gap: 40px; margin-top: 48px; padding-top: 36px; border-top: 1px solid var(--border); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--brand-blue); }
+  .stat-label { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+
+  .hero-right { display: flex; flex-direction: column; gap: 14px; }
+  .hero-card { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, transform 0.2s; }
+  .hero-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .hero-card-icon { font-size: 26px; margin-bottom: 10px; }
+  .hero-card h3 { color: var(--text-dark); font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .hero-card p { color: var(--text-light); font-size: 13px; line-height: 1.55; }
+  .hero-card-tag { display: inline-block; margin-top: 10px; background: var(--brand-blue-pale); color: var(--brand-blue); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+
+  /* TRUST BAR */
+  .trust-bar { background: white; padding: 22px 80px; display: flex; align-items: center; justify-content: space-between; gap: 28px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+  .trust-item { display: flex; align-items: center; gap: 10px; }
+  .trust-icon { font-size: 20px; }
+  .trust-text { font-size: 13px; color: var(--text-mid); font-weight: 500; line-height: 1.35; }
+  .trust-divider { width: 1px; height: 28px; background: var(--border); }
+
+  /* SECTIONS */
+  section { padding: 96px 80px; }
+  .section-tag { display: inline-block; background: var(--brand-blue-pale); color: var(--brand-blue); padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 16px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3vw, 42px); font-weight: 700; line-height: 1.2; margin-bottom: 14px; color: var(--text-dark); }
+  .section-desc { font-size: 17px; color: var(--text-mid); max-width: 540px; line-height: 1.78; margin-bottom: 52px; }
+
+  /* SERVICES */
+  #services { background: var(--bg); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .service-card { background: white; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: box-shadow 0.25s, transform 0.2s; }
+  .service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .service-card-img { width: 100%; height: 190px; object-fit: cover; display: block; }
+  .service-card-body { padding: 26px; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; color: var(--text-dark); margin-bottom: 14px; }
+  .service-list { list-style: none; }
+  .service-list li { font-size: 14px; color: var(--text-mid); padding: 7px 0; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 10px; }
+  .service-list li:last-child { border-bottom: none; }
+  .service-list li::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .service-card-footer { padding: 0 26px 22px; }
+  .service-link { display: inline-flex; align-items: center; gap: 6px; color: var(--brand-blue); font-weight: 600; font-size: 14px; text-decoration: none; }
+
+  /* TOOLS */
+  #tools { background: var(--brand-blue-mist); }
+  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .tool-card { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 26px; box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+  .tool-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--brand-blue), var(--brand-blue-light)); opacity: 0; transition: opacity 0.25s; }
+  .tool-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .tool-card:hover::before { opacity: 1; }
+  .tool-emoji { font-size: 30px; margin-bottom: 16px; display: block; }
+  .tool-card h3 { color: var(--text-dark); font-size: 16px; font-weight: 600; margin-bottom: 9px; }
+  .tool-card p { color: var(--text-mid); font-size: 14px; line-height: 1.65; }
+  .tool-badge { display: inline-block; margin-top: 14px; background: var(--brand-blue-pale); color: var(--brand-blue); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+  .tool-badge.new { background: #E8F8EE; color: #2A7A4A; }
+  .tool-badge.soon { background: #F3F4F6; color: #9AA3B0; }
+
+  /* CALCULATOR */
+  #calculator { background: white; }
+  .calc-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+  .calc-box { background: var(--bg); border-radius: var(--radius-lg); padding: 38px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+  .calc-box h3 { font-family: 'Playfair Display', serif; font-size: 21px; color: var(--text-dark); margin-bottom: 28px; }
+  .calc-row { margin-bottom: 20px; }
+  .calc-label { font-size: 13px; font-weight: 600; color: var(--text-mid); margin-bottom: 8px; display: block; }
+  .calc-slider { width: 100%; accent-color: var(--brand-blue); cursor: pointer; }
+  .calc-val-row { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+  .calc-val-row span { font-size: 12px; color: var(--text-light); }
+  .calc-val-row strong { font-size: 14px; font-weight: 600; color: var(--brand-blue); }
+  .calc-result { background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-light) 100%); border-radius: var(--radius); padding: 24px 26px; margin-top: 24px; }
+  .calc-result-label { color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 6px; }
+  .calc-result-amount { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: white; }
+  .calc-result-note { color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 6px; }
+  .calc-cta-note { font-size: 13px; color: var(--text-light); margin-top: 14px; text-align: center; }
+  .calc-cta-note a { color: var(--brand-blue); font-weight: 600; text-decoration: none; }
+
+  /* BOOKING */
+  #booking { background: var(--brand-blue-mist); }
+  .booking-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+  .step-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
+  .step-num { width: 40px; height: 40px; background: var(--brand-blue); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+  .step-title { font-weight: 600; font-size: 15px; color: var(--text-dark); margin-bottom: 3px; }
+  .step-desc { font-size: 14px; color: var(--text-mid); }
+  .addr-box { background: white; border-radius: var(--radius); padding: 16px 20px; border: 1px solid var(--border); font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-top: 8px; }
+  .booking-form-box { background: white; border-radius: var(--radius-lg); padding: 38px; box-shadow: var(--shadow-md); border: 1px solid var(--border); }
+  .booking-form-box h3 { font-family: 'Playfair Display', serif; font-size: 21px; color: var(--text-dark); margin-bottom: 26px; }
+
+  .form-row { margin-bottom: 16px; }
+  .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-mid); margin-bottom: 7px; }
+  .form-input { width: 100%; padding: 11px 15px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; color: var(--text-dark); background: white; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+  .form-input:focus { border-color: var(--brand-blue); box-shadow: 0 0 0 3px rgba(42,95,165,0.1); }
+  .form-input::placeholder { color: var(--text-light); }
+  .form-select { appearance: none; cursor: pointer; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .whatsapp-btn { display: flex; align-items: center; gap: 12px; background: #25D366; color: white; padding: 13px 22px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.2s; margin-top: 10px; justify-content: center; }
+  .whatsapp-btn:hover { background: #1ebe5d; }
+
+  /* TESTIMONIALS */
+  #testimonials { background: white; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .testimonial-card { background: var(--bg); border-radius: var(--radius-lg); padding: 28px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: box-shadow 0.2s; }
+  .testimonial-card:hover { box-shadow: var(--shadow-md); }
+  .stars { color: var(--gold); font-size: 15px; margin-bottom: 14px; }
+  .testimonial-text { font-size: 14px; color: var(--text-mid); line-height: 1.75; font-style: italic; margin-bottom: 22px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--brand-blue-pale); color: var(--brand-blue); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; border: 2px solid var(--border); }
+  .author-name { font-weight: 600; font-size: 14px; color: var(--text-dark); }
+  .author-sub { font-size: 12px; color: var(--text-light); }
+
+  /* ABOUT */
+  #about { background: var(--bg); }
+  .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-img-wrap { position: relative; }
+  .about-img { width: 100%; border-radius: var(--radius-lg); display: block; object-fit: cover; height: 460px; box-shadow: var(--shadow-lg); }
+  .about-badge-float { position: absolute; bottom: 28px; left: -20px; background: white; padding: 18px 26px; border-radius: var(--radius); box-shadow: var(--shadow-lg); border: 1px solid var(--border); }
+  .about-badge-float .num { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 700; color: var(--brand-blue); }
+  .about-badge-float .lbl { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+  .flag-item { display: inline-flex; align-items: center; gap: 8px; background: white; border: 1px solid var(--border); padding: 7px 14px; border-radius: 8px; font-size: 13px; color: var(--text-mid); font-weight: 500; transition: border-color 0.2s; margin: 0 8px 8px 0; }
+  .flag-item:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
+
+  /* CONTACT */
+  #contact { background: linear-gradient(150deg, #ECF3FF 0%, #F7FAFF 100%); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+  .contact-icon-wrap { width: 44px; height: 44px; border-radius: 10px; background: var(--brand-blue-pale); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .contact-info-item { display: flex; gap: 16px; margin-bottom: 28px; }
+  .contact-info-label { font-size: 12px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .contact-info-value { color: var(--text-dark); font-size: 15px; margin-top: 3px; }
+  .contact-info-value a { color: var(--brand-blue); text-decoration: none; }
+  .contact-form-box { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 38px; box-shadow: var(--shadow-md); }
+  .contact-form-box h3 { font-size: 20px; font-weight: 600; color: var(--text-dark); margin-bottom: 26px; }
+
+  .lang-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+  .lang-pill { background: white; border: 1.5px solid var(--border); padding: 7px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+  .lang-pill:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
+  .lang-pill.active { background: var(--brand-blue); color: white; border-color: var(--brand-blue); }
+
+  /* FOOTER */
+  footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 30px 80px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+  footer img { height: 28px; opacity: 0.7; filter: brightness(10); }
+
+  /* CHAT WIDGET */
+  .chat-widget-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: var(--brand-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: var(--shadow-lg); cursor: pointer; z-index: 1000; transition: transform 0.2s, background 0.2s; border: none; }
+  .chat-widget-btn:hover { transform: scale(1.05); background: var(--brand-blue-light); }
+  .chat-window { position: fixed; bottom: 100px; right: 30px; width: 340px; background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--border); z-index: 1000; display: none; flex-direction: column; overflow: hidden; transform-origin: bottom right; animation: chatPop 0.3s ease; }
+  @keyframes chatPop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+  .chat-header { background: var(--brand-blue); color: white; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 15px; }
+  .chat-close { cursor: pointer; opacity: 0.8; font-size: 14px; }
+  .chat-close:hover { opacity: 1; }
+  .chat-body { padding: 16px; height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: var(--bg); }
+  .chat-msg { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.5; }
+  .chat-msg.bot { background: white; border: 1px solid var(--border); border-bottom-left-radius: 4px; color: var(--text-dark); align-self: flex-start; }
+  .chat-msg.user { background: var(--brand-blue-pale); color: var(--brand-blue); border-bottom-right-radius: 4px; align-self: flex-end; }
+  .chat-input-area { padding: 12px; border-top: 1px solid var(--border); background: white; display: flex; gap: 8px; flex-wrap: wrap; }
+  .chat-quick-btn { background: var(--border-light); border: 1px solid var(--border); padding: 6px 12px; border-radius: 100px; font-size: 12px; color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+  .chat-quick-btn:hover { background: var(--brand-blue-pale); color: var(--brand-blue); border-color: var(--brand-blue-pale); }
+
+  /* MOCK MODAL */
+  .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(28, 43, 69, 0.6); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+  .modal-box { background: white; padding: 40px; border-radius: var(--radius-lg); text-align: center; max-width: 400px; width: 90%; transform: translateY(20px); transition: transform 0.3s; box-shadow: var(--shadow-lg); }
+  .modal-overlay.active { display: flex; opacity: 1; }
+  .modal-overlay.active .modal-box { transform: translateY(0); }
+  .modal-icon { font-size: 48px; margin-bottom: 16px; display: inline-block; animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.26, 1.55); }
+  @keyframes bounceIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+  .modal-box h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text-dark); margin-bottom: 10px; }
+  .modal-box p { font-size: 14px; color: var(--text-mid); margin-bottom: 24px; line-height: 1.6; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { animation: fadeUp 0.6s ease both; }
+  .d1 { animation-delay: 0.08s; } .d2 { animation-delay: 0.18s; } .d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.38s; }
+
+  @media (max-width: 1000px) {
+    nav { padding: 0 20px; } .hero { grid-template-columns: 1fr; padding: 140px 24px 60px; gap: 36px; }
+    section { padding: 60px 24px; } .services-grid, .tools-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .calc-layout, .booking-layout, .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 36px; }
+    .trust-bar { padding: 18px 24px; flex-wrap: wrap; gap: 18px; } footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
+    .about-badge-float { left: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce-bar">
+  🍁 Tax Season 2025 — File your T1 before April 30. <a href="#booking">Book your appointment →</a>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/NEW_FACE_ACCOUNTING01-1-2.png" alt="Face Accounting">
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#tools">Tools</a>
+    <a href="#calculator">Tax Calculator</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#booking" class="nav-cta">Book Appointment</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <div class="hero-badge fade-up"><span></span> Trusted in Toronto GTA since 2017</div>
+    <h1 class="fade-up d1"><em>Quick & Effective</em><br>Accounting<br>Solutions</h1>
+    <p class="hero-desc fade-up d2">Professional accounting, bookkeeping, and tax services for individuals and businesses in North York, Toronto, and Montreal. Serving clients in English, Turkish, Bosnian, and Albanian.</p>
+    <div class="hero-actions fade-up d3">
+      <a href="#booking" class="btn-primary">📅 Book Free Consultation</a>
+      <a href="#calculator" class="btn-outline">🧮 Try Tax Calculator</a>
+    </div>
+    <div class="hero-stats fade-up d4">
+      <div><div class="stat-num">8+</div><div class="stat-label">Years Experience</div></div>
+      <div><div class="stat-num">4</div><div class="stat-label">Languages Served</div></div>
+      <div><div class="stat-num">500+</div><div class="stat-label">Happy Clients</div></div>
+    </div>
+  </div>
+  <div class="hero-right fade-up d2">
+    <div class="hero-card"><div class="hero-card-icon">📋</div><h3>Personal Tax Returns</h3><p>T1, T4, self-employed, Uber drivers, non-residents, students and retirees.</p><span class="hero-card-tag">Starting from $80</span></div>
+    <div class="hero-card"><div class="hero-card-icon">🏢</div><h3>Business Registration & Corporate Tax</h3><p>Incorporation, GST/HST registration, payroll setup, T2 returns and full bookkeeping.</p><span class="hero-card-tag">Free Initial Consult</span></div>
+    <div class="hero-card"><div class="hero-card-icon">🌐</div><h3>Multilingual Support</h3><p>Serving Turkish, Bosnian and Albanian communities in the GTA with no language barrier.</p><span class="hero-card-tag">🇨🇦 🇹🇷 🇧🇦 🇦🇱</span></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text">CRA Certified<br>Accountants</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">⚡</span><div class="trust-text">Same-Day<br>Appointments</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">🌍</span><div class="trust-text">4 Languages<br>Supported</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">📁</span><div class="trust-text">Secure Document<br>Upload Portal</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">💬</span><div class="trust-text">WhatsApp<br>Support</div></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">Our Services</div>
+  <h2 class="section-title">Everything you need,<br>under one roof</h2>
+  <p class="section-desc">From personal T1 returns to corporate filings and business registration — expert accounting for every stage of your financial life.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/gfx-1.jpg" alt="Personal Services" class="service-card-img">
+      <div class="service-card-body"><h3>Personal Services</h3>
+        <ul class="service-list"><li>Employed (T4)</li><li>Self-Employed</li><li>Individual (T1)</li><li>Non-Residents</li><li>Retired</li><li>Student</li><li>Social Assistance Recipients</li><li>Uber / Gig Economy Driver</li></ul>
+      </div>
+      <div class="service-card-footer"><a href="#booking" class="service-link">Book Appointment →</a></div>
+    </div>
+    <div class="service-card">
+      <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/gfx-3.jpg" alt="Business Registration" class="service-card-img">
+      <div class="service-card-body"><h3>Business Registration</h3>
+        <ul class="service-list"><li>Incorporation Registration</li><li>Business Name Search (NUANS)</li><li>GST/HST Number Registration</li><li>Payroll Registration</li><li>Sole Proprietorship</li><li>Business Dissolution</li></ul>
+      </div>
+      <div class="service-card-footer"><a href="#booking" class="service-link">Get Started →</a></div>
+    </div>
+    <div class="service-card">
+      <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/gfx-4.jpg" alt="Business Services" class="service-card-img">
+      <div class="service-card-body"><h3>Business Services</h3>
+        <ul class="service-list"><li>Accounting</li><li>Bookkeeping</li><li>Income Tax</li><li>Corporate Tax (T2)</li><li>Payroll Management</li><li>Business Mailbox</li></ul>
+      </div>
+      <div class="service-card-footer"><a href="#booking" class="service-link">Learn More →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-tag">Platform Features</div>
+  <h2 class="section-title">Smart tools for<br>effortless accounting</h2>
+  <p class="section-desc">A modern platform with tools that save you time, answer your questions 24/7, and keep your documents secure.</p>
+  <div class="tools-grid">
+    <div class="tool-card"><span class="tool-emoji">📅</span><h3>Online Appointment Booking</h3><p>Book a consultation any time. Choose your service, pick a time slot, and get instant email confirmation.</p><span class="tool-badge new">Available Now</span></div>
+    <div class="tool-card"><span class="tool-emoji">🧮</span><h3>Tax Estimator Calculator</h3><p>Instant estimate of your federal and Ontario provincial taxes. Now with RRSP and Capital Gains.</p><span class="tool-badge new">Updated</span></div>
+    <div class="tool-card"><span class="tool-emoji">💬</span><h3>AI Chat Assistant</h3><p>Ask any tax question 24/7. Try the mock assistant below to get instant answers about tax deadlines and rates.</p><span class="tool-badge new">Available Now</span></div>
+    <div class="tool-card"><span class="tool-emoji">📊</span><h3>GST/HST Calculator</h3><p>Instantly add or extract 13% Ontario HST from any amount. Perfect for invoicing and expense tracking.</p><span class="tool-badge new">New</span></div>
+    <div class="tool-card"><span class="tool-emoji">📁</span><h3>Secure Document Portal</h3><p>Upload T4s, receipts, and invoices through our encrypted portal. No more sending documents by email.</p><span class="tool-badge soon">Coming Soon</span></div>
+    <div class="tool-card"><span class="tool-emoji">🔔</span><h3>CRA Deadline Reminders</h3><p>Never miss a filing date. Subscribe for automatic T1, T2, and GST/HST deadline reminders to your inbox.</p><span class="tool-badge soon">Coming Soon</span></div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculator">
+  <div class="calc-layout">
+    <div>
+      <div class="section-tag">Tax Estimator</div>
+      <h2 class="section-title">Estimate your<br>2024 tax return</h2>
+      <p class="section-desc">Get a quick estimate of your income tax. For a precise result tailored to your situation, book a free consultation.</p>
+      <ul class="service-list" style="max-width:340px;">
+        <li>Federal + Ontario Provincial Tax</li>
+        <li>Basic personal amount deductions</li>
+        <li>Employment and self-employed income</li>
+        <li>Results in seconds, no login required</li>
+      </ul>
+    </div>
+    <div class="calc-box">
+      <h3>🧮 Quick Tax Estimate — 2024</h3>
+      <div class="calc-row">
+        <label class="calc-label">Annual Income (Gross)</label>
+        <input type="range" class="calc-slider" id="income" min="10000" max="300000" step="5000" value="75000" oninput="calcTax()">
+        <div class="calc-val-row"><span>$10k</span><strong id="income-val">$75,000</strong><span>$300k+</span></div>
+      </div>
+      <div class="form-grid" style="margin-bottom: 20px;">
+        <div>
+          <label class="calc-label">RRSP Contribution ($)</label>
+          <input type="number" class="form-input" id="rrsp" value="0" min="0" oninput="calcTax()" style="padding: 8px 12px; height: 42px;">
+        </div>
+        <div>
+          <label class="calc-label">Capital Gains ($)</label>
+          <input type="number" class="form-input" id="capgains" value="0" min="0" oninput="calcTax()" style="padding: 8px 12px; height: 42px;">
+        </div>
+      </div>
+      <div class="calc-row">
+        <label class="calc-label">Employment Type</label>
+        <select class="form-input form-select" id="emp-type" onchange="calcTax()">
+          <option value="employed">Employed (T4)</option>
+          <option value="self">Self-Employed</option>
+          <option value="uber">Uber / Gig Worker</option>
+        </select>
+      </div>
+      <div class="calc-row">
+        <label class="calc-label">Province</label>
+        <select class="form-input form-select" id="province" onchange="calcTax()">
+          <option value="on">Ontario</option>
+          <option value="qc">Quebec</option>
+          <option value="bc">British Columbia</option>
+        </select>
+      </div>
+      <div class="calc-result">
+        <div class="calc-result-label">Estimated Tax Owing</div>
+        <div class="calc-result-amount" id="tax-result">$14,880</div>
+        <div class="calc-result-note">Effective rate: <span id="eff-rate">19.8%</span> · Estimate only</div>
+      </div>
+      <div class="calc-cta-note">Want the exact number? <a href="#booking">Book a free consultation →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- GST/HST CALCULATOR -->
+<section id="gst-calculator" style="background: var(--bg); border-top: 1px solid var(--border);">
+  <div class="calc-layout" style="grid-template-columns: 1.1fr 1fr;">
+    <div class="calc-box" style="background: white;">
+      <h3>📊 Ontario GST/HST Calculator</h3>
+      <p style="font-size: 14px; color: var(--text-mid); margin-bottom: 24px;">Quickly add or extract 13% HST for your invoices or receipts in Ontario.</p>
+      <div class="calc-row">
+        <label class="calc-label">Amount ($)</label>
+        <input type="number" class="form-input" id="gst-amount" value="100" min="0" oninput="calcGst()" style="font-size: 18px; font-weight: 600;">
+      </div>
+      <div class="form-grid" style="margin-bottom: 24px;">
+        <button class="btn-outline" id="btn-add-hst" onclick="setGstMode('add')" style="justify-content: center; border-color: var(--brand-blue); background: var(--brand-blue-pale);">Add 13% HST</button>
+        <button class="btn-outline" id="btn-ext-hst" onclick="setGstMode('extract')" style="justify-content: center;">Extract 13% HST</button>
+      </div>
+      <div style="background: var(--brand-blue-mist); border-radius: var(--radius); padding: 20px; border: 1px solid var(--border-light);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;"><span style="color: var(--text-mid);">Subtotal:</span><strong id="gst-subtotal">$100.00</strong></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;"><span style="color: var(--text-mid);">HST (13%):</span><strong id="gst-tax">$13.00</strong></div>
+        <div style="display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 16px;"><span style="color: var(--text-dark); font-weight: 600;">Total:</span><strong id="gst-total" style="color: var(--brand-blue); font-size: 20px; font-weight: 700;">$113.00</strong></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-tag">For Businesses</div>
+      <h2 class="section-title">Invoicing made<br>simple</h2>
+      <p class="section-desc">If your business revenue exceeds $30,000 in a calendar quarter or over four consecutive calendar quarters, you must register for and collect GST/HST.</p>
+      <ul class="service-list" style="max-width:340px;">
+        <li>Ontario HST Rate is 13%</li>
+        <li>GST is 5%, Provincial portion is 8%</li>
+        <li>We handle GST/HST return filings</li>
+      </ul>
+      <a href="#booking" class="btn-primary" style="margin-top: 24px;">Need help registering? →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="section-tag">Online Booking</div>
+  <h2 class="section-title">Book your appointment<br>in 60 seconds</h2>
+  <div class="booking-layout" style="margin-top:8px;">
+    <div>
+      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:32px;">Choose your service, select a convenient time, and we'll confirm instantly — in-person at our North York office or via video call.</p>
+      <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Choose your service</div><div class="step-desc">T1, T2, bookkeeping, business registration and more.</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Pick a time slot</div><div class="step-desc">Available Mon–Sat, 9am–6pm. Same-day slots often available.</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Get confirmed instantly</div><div class="step-desc">Confirmation email with office address or video link sent right away.</div></div></div>
+      <div style="margin-top:28px;"><div style="font-size:13px;font-weight:600;color:var(--text-mid);margin-bottom:8px;">📍 Office Location</div><div class="addr-box">1110 Finch Avenue West, Unit 314<br>North York, ON M3J 2T2</div></div>
+    </div>
+    <div class="booking-form-box">
+      <h3>📅 Request an Appointment</h3>
+      <form id="mock-booking-form" onsubmit="handleBooking(event)">
+        <div class="form-row"><label class="form-label">Full Name</label><input type="text" id="b-name" class="form-input" placeholder="Your full name" required></div>
+        <div class="form-grid">
+          <div class="form-row"><label class="form-label">Phone</label><input type="tel" class="form-input" placeholder="+1 (416) ..."></div>
+          <div class="form-row"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="you@email.com" required></div>
+        </div>
+        <div class="form-row"><label class="form-label">Service Needed</label>
+          <select class="form-input form-select"><option>Personal Tax Return (T1)</option><option>Corporate Tax Return (T2)</option><option>Bookkeeping</option><option>Business Registration</option><option>GST/HST Registration</option><option>Payroll Services</option><option>Other</option></select>
+        </div>
+        <div class="form-grid">
+          <div class="form-row"><label class="form-label">Preferred Date</label><input type="date" class="form-input" required></div>
+          <div class="form-row"><label class="form-label">Time</label>
+            <select class="form-input form-select"><option>Morning (9am–12pm)</option><option>Afternoon (12–3pm)</option><option>Evening (3–6pm)</option></select>
+          </div>
+        </div>
+        <div class="form-row"><label class="form-label">Meeting Type</label>
+          <select class="form-input form-select"><option>In-Person (North York)</option><option>Video Call (Zoom)</option><option>Phone Call</option></select>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:6px;padding:14px;font-size:15px;">Confirm Appointment →</button>
+      </form>
+      <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-light);">Or reach us on WhatsApp</div>
+      <a href="https://api.whatsapp.com/send/?phone=+14163207076" class="whatsapp-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp — +1 (416) 320-7076
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-tag">Client Reviews</div>
+  <h2 class="section-title">Trusted by hundreds<br>across the GTA</h2>
+  <p class="section-desc">Real feedback from individuals and business owners who trust Face Accounting year after year.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"I've been filing my T1 with Face Accounting for 3 years. As a self-employed consultant my taxes are complicated — they always get me the best refund possible."</p><div class="testimonial-author"><div class="author-avatar">AK</div><div><div class="author-name">Ahmet K.</div><div class="author-sub">Self-Employed, North York</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"They handled our incorporation, GST registration, and first corporate tax return. Everything was smooth and professional. Great service in Turkish!"</p><div class="testimonial-author"><div class="author-avatar">SY</div><div><div class="author-name">Selma Y.</div><div class="author-sub">Business Owner, Toronto</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"As an Uber driver I never knew how to file taxes correctly. Face Accounting explained everything clearly and filed everything on time. Highly recommended!"</p><div class="testimonial-author"><div class="author-avatar">MB</div><div><div class="author-name">Mirza B.</div><div class="author-sub">Uber Driver, Mississauga</div></div></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div class="about-img-wrap">
+      <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/face-accounting_flyer-11.jpg" alt="Face Accounting" class="about-img">
+      <div class="about-badge-float"><div class="num">8+</div><div class="lbl">Years Serving Toronto GTA</div></div>
+    </div>
+    <div>
+      <div class="section-tag">About Us</div>
+      <h2 class="section-title">A firm you can<br>truly trust</h2>
+      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:18px;">Our professional services firm in North York has been providing dedicated, quality accounting services to individuals and businesses since 2017.</p>
+      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:32px;">We understand entrepreneurs are busy. Our job is to handle your taxes and bookkeeping so you can focus on growing your business — across North York, Toronto GTA, and Montreal.</p>
+      <div style="font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:14px;">Communities we proudly serve:</div>
+      <div style="margin-bottom:36px;"><span class="flag-item">🇨🇦 English</span><span class="flag-item">🇹🇷 Turkish</span><span class="flag-item">🇧🇦 Bosnian</span><span class="flag-item">🇦🇱 Albanian</span></div>
+      <a href="#booking" class="btn-primary">Book Free Consultation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-layout">
+    <div>
+      <div class="section-tag">Contact Us</div>
+      <h2 class="section-title">Get in touch<br>anytime</h2>
+      <div style="margin-top:36px;">
+        <div class="contact-info-item"><div class="contact-icon-wrap">📍</div><div><div class="contact-info-label">Office Address</div><div class="contact-info-value">1110 Finch Avenue West, Unit 314<br>North York, ON M3J 2T2</div></div></div>
+        <div class="contact-info-item"><div class="contact-icon-wrap">📞</div><div><div class="contact-info-label">Phone</div><div class="contact-info-value"><a href="tel:+14165512358">+1 (416) 551-2358</a></div></div></div>
+        <div class="contact-info-item"><div class="contact-icon-wrap">✉️</div><div><div class="contact-info-label">Email</div><div class="contact-info-value"><a href="mailto:info@faceaccounting.com">info@faceaccounting.com</a></div></div></div>
+        <div class="contact-info-item"><div class="contact-icon-wrap">💬</div><div><div class="contact-info-label">WhatsApp</div><div class="contact-info-value"><a href="https://api.whatsapp.com/send/?phone=+14163207076">+1 (416) 320-7076</a></div></div></div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:var(--text-mid);margin-bottom:10px;">Preferred Language:</div>
+      <div class="lang-bar">
+        <div class="lang-pill active">🇨🇦 English</div>
+        <div class="lang-pill">🇹🇷 Türkçe</div>
+        <div class="lang-pill">🇧🇦 Bosanski</div>
+        <div class="lang-pill">🇦🇱 Shqip</div>
+      </div>
+    </div>
+    <div class="contact-form-box">
+      <h3>Send us a message</h3>
+      <div class="form-row"><label class="form-label">Full Name</label><input type="text" class="form-input" placeholder="Your name"></div>
+      <div class="form-row"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+      <div class="form-row"><label class="form-label">Phone Number</label><input type="tel" class="form-input" placeholder="+1 (416) ..."></div>
+      <div class="form-row"><label class="form-label">Subject</label><input type="text" class="form-input" placeholder="How can we help?"></div>
+      <div class="form-row"><label class="form-label">Message</label><textarea class="form-input" rows="4" placeholder="Tell us more about your needs..."></textarea></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="https://www.faceaccounting.com/wp-content/uploads/2022/02/NEW_FACE_ACCOUNTING01-1-2.png" alt="Face Accounting">
+  <span>© 2025 FaceAccounting.com — All rights reserved. Serving Toronto GTA & Montreal.</span>
+  <span>1110 Finch Ave W, Unit 314, North York ON</span>
+</footer>
+
+<!-- MOCK BOOKING MODAL -->
+<div class="modal-overlay" id="booking-modal">
+  <div class="modal-box">
+    <div class="modal-icon">✅</div>
+    <h3>Booking Confirmed!</h3>
+    <p>Thank you, <strong id="modal-name"></strong>. Your appointment has been requested successfully. We will send a confirmation email with details shortly.</p>
+    <button class="btn-primary" onclick="closeModal()" style="width: 100%; justify-content: center;">Done</button>
+  </div>
+</div>
+
+<!-- AI CHAT WIDGET -->
+<button class="chat-widget-btn" onclick="toggleChat()">💬</button>
+<div class="chat-window" id="chat-window">
+  <div class="chat-header">
+    <span>🤖 FaceTax Assistant</span>
+    <span class="chat-close" onclick="toggleChat()">✖</span>
+  </div>
+  <div class="chat-body" id="chat-body">
+    <div class="chat-msg bot">Hi there! 👋 I'm your AI Tax Assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-input-area">
+    <button class="chat-quick-btn" onclick="sendChat('When is the tax deadline?')">Tax Deadline?</button>
+    <button class="chat-quick-btn" onclick="sendChat('What is the HST rate in Ontario?')">HST Rate?</button>
+    <button class="chat-quick-btn" onclick="sendChat('How much does a T1 cost?')">Pricing?</button>
+    <button class="chat-quick-btn" onclick="sendChat('What do I need for a T1?')">T1 Requirements?</button>
+  </div>
+</div>
+
+<script>
+function calcTax() {
+  const rawIncome = parseInt(document.getElementById('income').value) || 0;
+  const rrsp = parseInt(document.getElementById('rrsp').value) || 0;
+  const capGains = parseInt(document.getElementById('capgains').value) || 0;
+  document.getElementById('income-val').textContent = '$' + rawIncome.toLocaleString();
+  
+  const taxableIncome = Math.max(0, rawIncome - rrsp + (capGains * 0.5));
+  let federal = 0;
+  if (taxableIncome <= 55867) federal = taxableIncome * 0.15;
+  else if (taxableIncome <= 111733) federal = 55867*0.15 + (taxableIncome-55867)*0.205;
+  else if (taxableIncome <= 154906) federal = 55867*0.15 + (111733-55867)*0.205 + (taxableIncome-111733)*0.26;
+  else federal = 55867*0.15 + (111733-55867)*0.205 + (154906-111733)*0.26 + (taxableIncome-154906)*0.29;
+  federal = Math.max(0, federal - 2358);
+  
+  const province = document.getElementById('province').value;
+  let prov = 0;
+  if (province === 'on') { prov = taxableIncome <= 51446 ? taxableIncome*0.0505 : taxableIncome <= 102894 ? 51446*0.0505+(taxableIncome-51446)*0.0915 : 51446*0.0505+(102894-51446)*0.0915+(taxableIncome-102894)*0.1116; }
+  else if (province === 'qc') { prov = taxableIncome * 0.14; }
+  else { prov = taxableIncome <= 45654 ? taxableIncome*0.0506 : 45654*0.0506+(taxableIncome-45654)*0.077; }
+  
+  const type = document.getElementById('emp-type').value;
+  let extra = 0;
+  if (type === 'self' || type === 'uber') {
+      extra = Math.min(taxableIncome, 68500) * 0.119;
+  } else {
+      extra = Math.min(taxableIncome, 68500) * 0.0595 + Math.min(taxableIncome, 63200) * 0.0166;
+  }
+  
+  const total = Math.round(federal + prov + extra);
+  document.getElementById('tax-result').textContent = '$' + total.toLocaleString();
+  const effectiveRate = rawIncome > 0 ? ((total / (rawIncome + capGains)) * 100).toFixed(1) : 0;
+  document.getElementById('eff-rate').textContent = effectiveRate + '%';
+}
+
+let gstMode = 'add';
+function setGstMode(mode) {
+  gstMode = mode;
+  document.getElementById('btn-add-hst').style.background = mode === 'add' ? 'var(--brand-blue-pale)' : 'white';
+  document.getElementById('btn-add-hst').style.borderColor = mode === 'add' ? 'var(--brand-blue)' : 'var(--border)';
+  document.getElementById('btn-ext-hst').style.background = mode === 'extract' ? 'var(--brand-blue-pale)' : 'white';
+  document.getElementById('btn-ext-hst').style.borderColor = mode === 'extract' ? 'var(--brand-blue)' : 'var(--border)';
+  calcGst();
+}
+function calcGst() {
+  const amt = parseFloat(document.getElementById('gst-amount').value) || 0;
+  let subtotal = 0, tax = 0, total = 0;
+  if (gstMode === 'add') { subtotal = amt; tax = amt * 0.13; total = amt + tax; }
+  else { total = amt; subtotal = amt / 1.13; tax = total - subtotal; }
+  document.getElementById('gst-subtotal').textContent = '$' + subtotal.toFixed(2);
+  document.getElementById('gst-tax').textContent = '$' + tax.toFixed(2);
+  document.getElementById('gst-total').textContent = '$' + total.toFixed(2);
+}
+
+function handleBooking(e) {
+  e.preventDefault();
+  const name = document.getElementById('b-name').value || 'Guest';
+  document.getElementById('modal-name').textContent = name;
+  document.getElementById('booking-modal').classList.add('active');
+  document.getElementById('mock-booking-form').reset();
+}
+function closeModal() {
+  document.getElementById('booking-modal').classList.remove('active');
+}
+
+let chatOpen = false;
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-window').style.display = chatOpen ? 'flex' : 'none';
+}
+function sendChat(question) {
+  const body = document.getElementById('chat-body');
+  body.innerHTML += `<div class="chat-msg user">${question}</div>`;
+  body.scrollTop = body.scrollHeight;
+  
+  setTimeout(() => {
+    let answer = "I'm sorry, I can only answer a few basic questions right now.";
+    if (question.includes("deadline")) answer = "For the 2024 tax year, the deadline to file your personal T1 is April 30, 2025. If self-employed, the deadline is June 16, 2025.";
+    if (question.includes("HST rate")) answer = "The HST (Harmonized Sales Tax) rate in Ontario is 13%. This consists of 5% federal GST and 8% provincial tax.";
+    if (question.includes("cost")) answer = "Our personal tax returns (T1) start from just $80. Corporate tax returns (T2) are quoted based on the complexity. You can book a free consultation!";
+    if (question.includes("T1 Requirements")) answer = "You'll need your T4 slips, any T5s, RRSP contribution receipts, medical expense receipts, and notice of assessment from last year.";
+    
+    body.innerHTML += `<div class="chat-msg bot">${answer}</div>`;
+    body.scrollTop = body.scrollHeight;
+  }, 600);
+}
+
+document.querySelectorAll('.lang-pill').forEach(p => p.addEventListener('click', function() {
+  document.querySelectorAll('.lang-pill').forEach(x => x.classList.remove('active'));
+  this.classList.add('active');
+}));
+calcTax();
+calcGst();
+</script>
+</body>
+</html>
